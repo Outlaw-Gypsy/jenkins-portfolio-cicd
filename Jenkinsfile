@@ -28,7 +28,12 @@ pipeline {
         stage('Run Application') {
             steps {
                 echo 'Deployment stage will come next'
-            }
+           	
+		sh '''
+		sudo cp -r html/* /var/www/html/
+		sudo systemctl restart nginx
+		'''
+	    }
         }
 
     }
