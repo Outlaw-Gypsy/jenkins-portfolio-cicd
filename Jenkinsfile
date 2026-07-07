@@ -6,25 +6,28 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Checking out code from GitHub'
+                git branch: 'main',
+				url: 'https://github.com/Outlaw-Gypsy/jenkins-portfolio-cicd'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Building portfolio website'
+                echo 'Checking downloaded files'
+		sh 'ls -la'
+		sh 'ls -la html'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                echo 'Installing dependencies'
+                echo 'Dependencies step completed: Nginx already installed'
             }
         }
 
         stage('Run Application') {
             steps {
-                echo 'Running application'
+                echo 'Deployment stage will come next'
             }
         }
 
