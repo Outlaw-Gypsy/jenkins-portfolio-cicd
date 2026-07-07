@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Projects | Cloud & DevOps Engineer</title>
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1024;
+      --card: rgba(255, 255, 255, 0.075);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --text: #f8fafc;
+      --muted: #a8b3cf;
+      --primary: #38bdf8;
+      --primary-2: #818cf8;
+      --accent: #22c55e;
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --max-width: 1180px;
+      --shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), transparent 34%),
+        radial-gradient(circle at top right, rgba(129, 140, 248, 0.25), transparent 30%),
+        linear-gradient(135deg, #050816 0%, #070b1f 45%, #020617 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--max-width));
+      margin-inline: auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(20px);
+      background: rgba(5, 8, 22, 0.78);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.05rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.95), rgba(129, 140, 248, 0.95));
+      box-shadow: 0 0 35px rgba(56, 189, 248, 0.35);
+      font-weight: 900;
+      color: #020617;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: #020617;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), #a5b4fc);
+      box-shadow: 0 10px 35px rgba(56, 189, 248, 0.28);
+    }
+
+    .page-hero {
+      padding: 92px 0 54px;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      padding: 8px 14px;
+      margin-bottom: 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      background: rgba(56, 189, 248, 0.08);
+      color: #bae6fd;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 900px;
+      font-size: clamp(3rem, 8vw, 6.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.085em;
+      margin-bottom: 26px;
+      background: linear-gradient(135deg, #f8fafc 20%, #7dd3fc 52%, #a5b4fc 86%);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .projects {
+      padding: 38px 0 110px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(56, 189, 248, 0.48);
+    }
+
+    .project-visual {
+      min-height: 210px;
+      padding: 24px;
+      display: flex;
+      align-items: flex-end;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(56,189,248,0.35), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(129,140,248,0.34), transparent 30%),
+        linear-gradient(135deg, rgba(15,23,42,0.95), rgba(2,6,23,0.98));
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .diagram {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 0.6fr 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .node {
+      min-height: 60px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #e0f2fe;
+      font-size: 0.82rem;
+      font-weight: 850;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .connector {
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      box-shadow: 0 0 18px rgba(56,189,248,0.55);
+    }
+
+    .project-content {
+      padding: 28px;
+    }
+
+    .project-content h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.045em;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.1);
+      color: #bae6fd;
+      border: 1px solid rgba(56,189,248,0.16);
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 850;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: #020617;
+      background: linear-gradient(135deg, var(--primary), #c4b5fd);
+      box-shadow: 0 18px 45px rgba(56, 189, 248, 0.25);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+    }
+
+    .featured {
+      grid-column: span 2;
+    }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 850px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured {
+        grid-column: span 1;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 28px, var(--max-width));
+      }
+
+      .nav-inner {
+        min-height: auto;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .page-hero {
+        padding-top: 62px;
+      }
+
+      h1 {
+        font-size: clamp(2.75rem, 16vw, 4.4rem);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">ED</span>
+        <span>Eniola Dankuwo</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="project.html">Projects</a>
+        <a href="contact.html" class="nav-cta">Contact Me</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="container">
+      <div class="eyebrow">Cloud / DevOps Project Portfolio</div>
+      <h1>Infrastructure projects</h1>
+      <p class="hero-copy">
+        A focused collection of practical Cloud and DevOps projects covering AWS EC2,
+        Nginx, Linux hosting, IAM, dashboards, and static server deployment.
+      </p>
+    </div>
+  </header>
+
+  <main class="projects">
+    <div class="container">
+      <div class="projects-grid">
+
+        <article class="project-card featured">
+          <div class="project-visual">
+            <div class="diagram">
+              <div class="node">AWS EC2</div>
+              <div class="connector"></div>
+              <div class="node">Provisioned Server</div>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <h2>EC2 Provisioning Assignment</h2>
+            <p>
+              This project demonstrates how to provision a Linux server on AWS using Amazon EC2, 
+		securely connect to it through SSH, install and configure Nginx, and deploy a custom web page.
+            </p>
+
+            <div class="tags">
+              <span class="tag">AWS</span>
+              <span class="tag">EC2</span>
+              <span class="tag">Linux</span>
+              <span class="tag">SSH</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/Outlaw-Gypsy/aws-ec2-provisioning-nginx" class="btn btn-primary" target="_blank">View on GitHub</a>
+              <a href="contact.html" class="btn btn-secondary">Discuss Project</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-visual">
+            <div class="diagram">
+              <div class="node">Nginx</div>
+              <div class="connector"></div>
+              <div class="node">Web Server</div>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <h2>Nginx Webserver Project</h2>
+            <p>
+              This project demonstrates how to deploy a simple website using Nginx.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Nginx</span>
+              <span class="tag">Ubuntu</span>
+              <span class="tag">Web Server</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/Outlaw-Gypsy/En_nginx-webserver-project" class="btn btn-primary" target="_blank">View on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-visual">
+            <div class="diagram">
+              <div class="node">Nginx</div>
+              <div class="connector"></div>
+              <div class="node">Mini Dashboard</div>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <h2>Nginx Mini Dashboard</h2>
+            <p>
+              This project demonstrates how to configure and deploy a simple multi-page website using NGINX as a web server.
+		 It serves multiple HTML pages locally and configures clean routing for each page.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Nginx</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/Outlaw-Gypsy/En_nginx_mini_dashboards" class="btn btn-primary" target="_blank">View on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-visual">
+            <div class="diagram">
+              <div class="node">AWS IAM</div>
+              <div class="connector"></div>
+              <div class="node">Access Control</div>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <h2>AWS IAM Management Lab</h2>
+            <p>
+              This project demonstrates AWS Identity and Access Management (IAM) by creating users, groups, and policies to control access to AWS resources.
+            </p>
+
+            <div class="tags">
+              <span class="tag">AWS IAM</span>
+              <span class="tag">Security</span>
+              <span class="tag">Least Privilege</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/Outlaw-Gypsy/aws-iam-users-groups-policies-lab" class="btn btn-primary" target="_blank">View on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-visual">
+            <div class="diagram">
+              <div class="node">Static Site</div>
+              <div class="connector"></div>
+              <div class="node">Linux Server</div>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <h2>Static Portfolio Server</h2>
+            <p>
+              Deployed a static portfolio website on a Linux server, structured for Nginx hosting,
+              public access, and recruiter-facing presentation.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Linux</span>
+              <span class="tag">Nginx</span>
+              <span class="tag">Static Hosting</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/Outlaw-Gypsy/nginx_static_portfolio_server_project" class="btn btn-primary" target="_blank">View on GitHub</a>
+              <a href="index.html" class="btn btn-secondary">Back to Home</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Eniola Dankuwo. Cloud & DevOps Engineer.</span>
+      <span><a href="index.html">Home</a> · <a href="contact.html">Contact</a></span>
+    </div>
+  </footer>
+</body>
+</html>
